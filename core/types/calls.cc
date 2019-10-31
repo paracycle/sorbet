@@ -526,6 +526,7 @@ DispatchResult dispatchCallSymbol(Context ctx, DispatchArgs args,
                                                              objMeth.data(ctx)->owner.data(ctx)->name.show(ctx))));
                     }
                 }
+                /*
                 auto alternatives = symbol.data(ctx)->findMemberFuzzyMatch(ctx, args.name);
                 if (!alternatives.empty()) {
                     vector<ErrorLine> lines;
@@ -577,6 +578,7 @@ DispatchResult dispatchCallSymbol(Context ctx, DispatchArgs args,
                     }
                     e.addErrorSection(ErrorSection(lines));
                 }
+                */
 
                 auto attached = symbol.data(ctx)->attachedClass(ctx);
                 if (attached.exists() && symbol.data(ctx)->derivesFrom(ctx, Symbols::Chalk_Tools_Accessible())) {
