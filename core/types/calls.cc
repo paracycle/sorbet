@@ -834,12 +834,6 @@ DispatchResult dispatchCallSymbol(Context ctx, DispatchArgs args,
         const auto &bspec = data->arguments().back();
         ENFORCE(bspec.flags.isBlock, "The last symbol must be the block arg: {}", data->show(ctx));
 
-        if (data->hasSig() && bspec.isSyntheticBlockArgument()) {
-            if (auto e = ctx.state.beginError(args.locs.call, errors::Infer::UnexpectedBlockArg)) {
-                e.setHeader("Method `{}` does not take a block argument", method.show(ctx));
-            }
-        }
-
         TypePtr blockType = Types::resultTypeAsSeenFrom(ctx, bspec.type, data->owner, symbol, targs);
         if (!blockType) {
             blockType = Types::untyped(ctx, method);
